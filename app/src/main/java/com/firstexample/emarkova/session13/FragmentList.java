@@ -56,7 +56,6 @@ public class FragmentList extends Fragment {
 
             @Override
             public void onItemClick(RecyclerView recyclerView, View itemView, int position) {
-                //переопределить метод
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 FragmentDetail fragmentDetail = new FragmentDetail();
                 Bundle bundle = new Bundle();

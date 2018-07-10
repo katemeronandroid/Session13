@@ -5,8 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class WeekWeather {
-    //@SerializedName("icon")
-    //private List<String> icons;
 
     @SerializedName("data")
     private List<DayWeather> weatherList;

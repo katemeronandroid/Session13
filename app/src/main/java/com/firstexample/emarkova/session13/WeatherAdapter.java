@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherAdapter extends RecyclerView.Adapter {
-    //private String[] mDataName = {"abc", "cba", "asdf", "sDA", "ASDFSADF", "Ssfsd", "asdfsf", "sasdf", "asdfsad"};
     ArrayList<String> mDayName = null;
     ArrayList<String> mDayTemp = null;
 
