@@ -10,11 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.firstexample.emarkova.session13.MVP.MVPModel;
+import com.firstexample.emarkova.session13.MVP.MVPModelImp;
+import com.firstexample.emarkova.session13.MVP.MVPPresenter;
+import com.firstexample.emarkova.session13.MVP.MVPPresenterImp;
+import com.firstexample.emarkova.session13.MVP.MVPView;
 import com.firstexample.emarkova.session13.database.DBManager;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class FragmentDetail extends Fragment {
+public class FragmentDetail extends Fragment implements MVPView{
     DBManager manager;
     @Nullable
     @Override
@@ -30,17 +36,26 @@ public class FragmentDetail extends Fragment {
         if(bundle != null) {
             manager = new DBManager(getContext());
             key = bundle.getString("dayname");
-            ArrayList<String> list = manager.getDetailInfo(key);
-            TextView textView = (TextView) view.findViewById(R.id.textViewDay);
-            textView.setText("Day:        " +list.get(0));
-            textView = (TextView)view.findViewById(R.id.textSummary);
-            textView.setText("Summary:    " + list.get(1));
-            textView = (TextView)view.findViewById(R.id.textViewTemp);
-            textView.setText("Temperature: " +list.get(2));
-            textView = (TextView)view.findViewById(R.id.textViewPress);
-            textView.setText("Pressure:    " +list.get(3));
-            textView = (TextView)view.findViewById(R.id.textViewWind);
-            textView.setText("Wind:        " +list.get(4));
+            MVPModel model = new MVPModelImp(manager);
+            MVPPresenter presenter = new MVPPresenterImp(model);
+            presenter.connectToView(this);
+            presenter.getWeather(key);
         }
     }
+
+    @Override
+    public void setData(List<String> list) {
+        View view = getView();
+        TextView textView = (TextView) view.findViewById(R.id.textViewDay);
+        textView.setText("Day:        " +list.get(0));
+        textView = (TextView)view.findViewById(R.id.textSummary);
+        textView.setText("Summary:    " + list.get(1));
+        textView = (TextView)view.findViewById(R.id.textViewTemp);
+        textView.setText("Temperature: " +list.get(2));
+        textView = (TextView)view.findViewById(R.id.textViewPress);
+        textView.setText("Pressure:    " +list.get(3));
+        textView = (TextView)view.findViewById(R.id.textViewWind);
+        textView.setText("Wind:        " +list.get(4));
+    }
+
 }

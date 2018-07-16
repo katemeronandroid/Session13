@@ -8,6 +8,7 @@ import android.os.ResultReceiver;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.firstexample.emarkova.session13.database.DBHelper;
 import com.firstexample.emarkova.session13.database.DBManager;
 import com.firstexample.emarkova.session13.datamodel.DayManager;
 import com.firstexample.emarkova.session13.datamodel.DayWeather;
@@ -59,10 +60,8 @@ public class WeatherIntentService extends IntentService {
             dbManager.addNewDay(dayInfo);
             day = (day + 1) % 7;
         }
-
         Intent broadcastIntent = new Intent("emarkova.GET_WEATHER");
         sendBroadcast(broadcastIntent);
-
     }
 
     private String getCel(Double number) {

@@ -11,8 +11,10 @@ import java.util.Collections;
 import java.util.Iterator;
 
 public class DBHelper extends SQLiteOpenHelper {
+    private static final String TABNAME = "DAYS";
     private static final String DB_NAME = "weather_database";
     private static final int VERSION_DB = 1;
+    Double test = 0.0;
 
     public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -28,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void createTable(SQLiteDatabase sqLiteDatabase) {
         //{ "day_name", "icon", "temp_min", "temp_max", "visib", "cloud", "press", "humid", "wind" };
-        sqLiteDatabase.execSQL(" CREATE TABLE DAYS ( day_id integer PRIMARY KEY, day_name text NOT NULL, icon text, temp_min text, temp_max text, visib text, cloud text, press text, humid text, wind text)");
+        sqLiteDatabase.execSQL(" CREATE TABLE "+TABNAME+"( day_id integer PRIMARY KEY, day_name text NOT NULL, icon text, temp_min text, temp_max text, visib text, cloud text, press text, humid text, wind text)");
         //тут могла быть вторая табла, но ее тут нет
     }
 
@@ -39,8 +41,9 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void deleteTable(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS DAYS");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABNAME);
     }
+
     public ContentValues getContentValues(ArrayList<String> list) {
         String [] columns = new String[] { "day_name", "icon", "temp_min", "temp_max", "visib", "cloud", "press", "humid", "wind" };
         ContentValues values = new ContentValues();

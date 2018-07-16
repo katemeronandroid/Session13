@@ -10,32 +10,32 @@
     <TextView
         android:id="@+id/textViewDay"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="@dimen/textview_height"
         android:text="TextView"
-        android:textSize="18sp" />
+        android:textSize="@dimen/text_size" />
 
     <TextView
         android:id="@+id/textViewPress"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:textSize="18sp"/>
+        android:layout_height="@dimen/textview_height"
+        android:textSize="@dimen/text_size"/>
 
     <TextView
         android:id="@+id/textViewTemp"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:textSize="18sp"/>
+        android:layout_height="@dimen/textview_height"
+        android:textSize="@dimen/text_size"/>
 
     <TextView
         android:id="@+id/textViewWind"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:textSize="18sp"/>
+        android:layout_height="@dimen/textview_height"
+        android:textSize="@dimen/text_size"/>
 
     <TextView
         android:id="@+id/textSummary"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:textSize="18sp"/>
+        android:layout_height="@dimen/textview_height"
+        android:textSize="@dimen/text_size"/>
 
 </LinearLayout>

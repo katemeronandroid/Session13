@@ -7,8 +7,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class APIHelper {
-    public static String KEY = "f05abbdbbf17122b68d1be8757b0cd10";
-    public static final String BASE_URL = "http://api.openweathermap.org/data/2.5/";
+    public static String KEY = "939831d11127fa45dc1d812a64d53af2";
     private static RetrofitHelper retrofit = null;
     private WeatherForecast weatherForecast = null;
     private static double lat = 37.3357;// 55.4507;
@@ -26,7 +25,7 @@ public class APIHelper {
     }
 
     public void authAsync() {
-        retrofit.getService().getForecast(lat,lon).enqueue(new Callback<WeatherForecast>() {
+        retrofit.getService().getForecast(KEY,lat,lon).enqueue(new Callback<WeatherForecast>() {
             @Override
             public void onResponse(Call<WeatherForecast> call, Response<WeatherForecast> response) {
                 weatherForecast = response.body();

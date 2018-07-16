@@ -1,6 +1,7 @@
 package com.firstexample.emarkova.session13;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -50,7 +51,11 @@ public class FragmentList extends Fragment {
         mRecyclerView.addItemDecoration(new SpaceItemDecoration(SPACE));
         manager = new DBManager(getContext());
         ArrayList<ArrayList<String>> dayInfo = manager.getDayInfo();
-        mAdapter = new WeatherAdapter(dayInfo.get(0), dayInfo.get(3));
+        ArrayList<WeatherCell> infoRecView = new ArrayList<>();
+        for (int i = 0; i < dayInfo.get(0).size(); i++) {
+            infoRecView.add(new WeatherCell(dayInfo.get(0).get(i), dayInfo.get(3).get(i)));
+        }
+        mAdapter = new WeatherAdapter(infoRecView, getContext());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addOnItemTouchListener(new RecyclerClickListiner(getContext()) {
 

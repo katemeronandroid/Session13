@@ -11,6 +11,6 @@ import retrofit2.http.Path;
 
 public interface MyServer {
 
-    @GET("{lat},{long}")
-    Call<WeatherForecast> getForecast(@Path("lat") double latitude, @Path("long") double longitude);
+    @GET("/forecast/{token}/{lat},{long}")
+    Call<WeatherForecast> getForecast(@Path("token") String token, @Path("lat") double latitude, @Path("long") double longitude);
 }

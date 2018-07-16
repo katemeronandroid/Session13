@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class DBManager {
     private DBHelper helper;
+    private static final String TABNAME = "DAYS";
 
     public DBManager(Context context) {
         this.helper = new DBHelper(context);
@@ -24,7 +25,7 @@ public class DBManager {
             db = helper.getReadableDatabase();
             db.beginTransaction();
             String [] columns = new String[] { "day_name", "icon", "temp_min", "temp_max" };
-            Cursor cursor = db.query("DAYS", columns, null, null, null, null, null);
+            Cursor cursor = db.query(TABNAME, columns, null, null, null, null, null);
             for(int i = 0; i < columns.length; i++) {
                 temp = parseCursorForInfo(cursor, columns[i]);
                 result.add(temp);
@@ -50,7 +51,7 @@ public class DBManager {
         try {
             db = helper.getReadableDatabase();
             db.beginTransaction();
-            String query = "SELECT * FROM " + "DAYS" + " WHERE day_name='"+ day + "'";
+            String query = "SELECT * FROM " + TABNAME + " WHERE day_name='"+ day + "'";
             Cursor cursor = db.rawQuery(query, null);
             result = parseOneItemCursor(cursor);
             cursor.close();
@@ -88,7 +89,7 @@ public class DBManager {
             db = helper.getWritableDatabase();
             db.beginTransaction();
             ContentValues values = helper.getContentValues(list);
-            db.insert("DAYS", null, values);
+            db.insert(TABNAME, null, values);
             db.setTransactionSuccessful();
         }catch (SQLiteException e) {
             Log.v("SQLiteException", e.getMessage());
