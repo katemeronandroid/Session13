@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentDetail extends Fragment implements MVPView{
-    DBManager manager;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,10 +33,8 @@ public class FragmentDetail extends Fragment implements MVPView{
         Bundle bundle = getArguments();
         String key;
         if(bundle != null) {
-            manager = new DBManager(getContext());
             key = bundle.getString("dayname");
-            MVPModel model = new MVPModelImp(manager);
-            MVPPresenter presenter = new MVPPresenterImp(model);
+            MVPPresenter presenter = new MVPPresenterImp();
             presenter.connectToView(this);
             presenter.getWeather(key);
         }
