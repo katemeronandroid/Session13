@@ -5,7 +5,7 @@
     <data>
         <variable
             name="weathercell"
-            type="com.firstexample.emarkova.session13.WeatherCell"/>
+            type="com.firstexample.emarkova.session13.presentation.datamodel.WeatherCell"/>
     </data>
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

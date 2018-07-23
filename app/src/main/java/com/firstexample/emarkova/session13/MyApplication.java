@@ -3,7 +3,7 @@ package com.firstexample.emarkova.session13;
 import android.app.Application;
 import android.content.Context;
 
-import com.firstexample.emarkova.session13.database.DBManager;
+import com.firstexample.emarkova.session13.data.database.DBManager;
 
 public class MyApplication extends Application {
     static Context context;

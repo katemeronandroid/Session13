@@ -22,7 +22,7 @@
         </activity>
 
         <service
-            android:name=".WeatherIntentService"
+            android:name=".data.WeatherIntentService"
             android:exported="false"></service>
     </application>
 
