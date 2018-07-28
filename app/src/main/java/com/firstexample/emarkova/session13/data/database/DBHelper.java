@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.firstexample.emarkova.session13.DaggerContextComponent;
 import com.firstexample.emarkova.session13.MyApplication;
 
 import java.util.ArrayList;
@@ -21,11 +22,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
+
     @Inject
     public DBHelper() {
-        this(MyApplication.getContext(),DB_NAME, null, VERSION_DB);
-        //DaggerApplicationComponent.builder().contextModule(new ContextModule()).build().inject(this)
+        this(MyApplication.getContext(), DB_NAME, null, VERSION_DB);
     }
+
+   /* public DBHelper(Context context) {
+        this(context, DB_NAME, null, VERSION_DB);
+        //this(DaggerContextComponent.builder().build().getApp().context, DB_NAME, null, VERSION_DB);
+    }*/
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {

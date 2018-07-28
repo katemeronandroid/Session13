@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
+import com.firstexample.emarkova.session13.ContextComponent;
+import com.firstexample.emarkova.session13.DaggerContextComponent;
+import com.firstexample.emarkova.session13.MyApplication;
 import com.firstexample.emarkova.session13.data.entity.DataDay;
 
 import java.util.ArrayList;
@@ -17,7 +20,6 @@ import dagger.Module;
 
 @Module
 public class DBManager {
-
     @Inject
     DBHelper helper;
 
@@ -25,6 +27,7 @@ public class DBManager {
 
     @Inject
     public DBManager(DBHelper helper) {
+        //DBHelper helper = DaggerContextComponent.builder().myApplication(new MyApplication()).build().getHelper();
         this.helper = helper;
     }
 

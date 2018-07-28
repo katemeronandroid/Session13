@@ -1,8 +1,11 @@
 package com.firstexample.emarkova.session13.data;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+
+import com.firstexample.emarkova.session13.DaggerContextComponent;
 
 public class WeatherIntentService extends IntentService {
     private static final long TIMEOUT = 1000;
