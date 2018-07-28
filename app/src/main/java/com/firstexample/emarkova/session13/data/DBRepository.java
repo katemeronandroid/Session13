@@ -5,6 +5,8 @@ import com.firstexample.emarkova.session13.domain.model.Day;
 
 import java.util.ArrayList;
 
+import dagger.Component;
+
 public interface DBRepository {
     public ArrayList<DataDay> getDayInfo();
     public DataDay getDetailInfo(String day);

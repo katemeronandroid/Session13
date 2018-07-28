@@ -2,6 +2,9 @@ package com.firstexample.emarkova.session13.data.API;
 
 import com.firstexample.emarkova.session13.data.entity.WeatherForecast;
 
+import javax.inject.Inject;
+
+import dagger.Module;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,8 +23,10 @@ public class APIHelper {
     public void setWeatherForecast(WeatherForecast weatherForecast) {
         this.weatherForecast = weatherForecast;
     }
-    public APIHelper(RetrofitHelper helper) {
-        this.retrofit = helper;
+
+    @Inject
+    public APIHelper() {
+        this.retrofit = new RetrofitHelper();
     }
 
     public void authAsync(String country) {
@@ -58,4 +63,6 @@ public class APIHelper {
                 lon = -118.1437;
         }
     }
+
+
 }

@@ -11,12 +11,21 @@ import com.firstexample.emarkova.session13.data.entity.DataDay;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
+import dagger.Module;
+
+@Module
 public class DBManager {
-    private DBHelper helper;
+
+    @Inject
+    DBHelper helper;
+
     private static final String TABNAME = "DAYS";
 
-    public DBManager(Context context) {
-        this.helper = new DBHelper(context);
+    @Inject
+    public DBManager(DBHelper helper) {
+        this.helper = helper;
     }
 
     public ArrayList<DataDay> getDayInfo(){

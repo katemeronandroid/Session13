@@ -1,9 +1,16 @@
-package com.firstexample.emarkova.session13.data;
+package com.firstexample.emarkova.session13.domain;
 
 import com.firstexample.emarkova.session13.data.entity.DataDay;
 import com.firstexample.emarkova.session13.domain.model.Day;
 
+import javax.inject.Inject;
+
+import dagger.Module;
+import dagger.Provides;
+
+
 public class DayMapper {
+
     public static Day mapToDomain(DataDay dataDay) {
         Day result = new Day();
         result.setDayName(dataDay.getDayName());

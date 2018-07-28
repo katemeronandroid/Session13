@@ -3,17 +3,21 @@ package com.firstexample.emarkova.session13;
 import android.app.Application;
 import android.content.Context;
 
-import com.firstexample.emarkova.session13.data.database.DBManager;
+import javax.inject.Inject;
 
 public class MyApplication extends Application {
-    static Context context;
+    private static MyApplication application;
+
+    @Inject
+    public MyApplication() {}
+
     @Override
     public void onCreate() {
         super.onCreate();
-        MyApplication.context = getApplicationContext();
+        application = this;
     }
 
-    public static DBManager getDBManager() {
-        return new DBManager(context);
+    public static Context getContext() {
+        return application.getApplicationContext();
     }
 }

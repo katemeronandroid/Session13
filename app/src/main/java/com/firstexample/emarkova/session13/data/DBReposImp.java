@@ -1,9 +1,13 @@
 package com.firstexample.emarkova.session13.data;
 
-import com.firstexample.emarkova.session13.MyApplication;
+import com.firstexample.emarkova.session13.data.API.APIHelper;
+import com.firstexample.emarkova.session13.data.API.APIModule;
+import com.firstexample.emarkova.session13.data.database.DBComponent;
 import com.firstexample.emarkova.session13.data.database.DBManager;
+import com.firstexample.emarkova.session13.data.database.DaggerDBComponent;
 import com.firstexample.emarkova.session13.data.entity.DataDay;
 import com.firstexample.emarkova.session13.data.entity.DayWeather;
+import com.firstexample.emarkova.session13.domain.DayMapper;
 import com.firstexample.emarkova.session13.domain.model.Day;
 import com.firstexample.emarkova.session13.presentation.datamodel.DayManager;
 
@@ -14,11 +18,12 @@ import java.util.List;
 public class DBReposImp implements DBRepository {
     private static final long TIMEOUT = 1000;
     private DBManager dbManager;
-    private APIReposImp apiReposImp;
+    private APIHelper apiHelper;
 
     public DBReposImp(){
-        dbManager = MyApplication.getDBManager();
-        apiReposImp = new APIReposImp();
+        DBComponent component = DaggerDBComponent.builder().aPIModule(new APIModule(new APIHelper())).build();
+        dbManager = component.getDBManager();
+        apiHelper = component.getHelper();
     }
 
     @Override
@@ -33,15 +38,15 @@ public class DBReposImp implements DBRepository {
 
     @Override
     public void setNewForecast(String country) {
-        apiReposImp.authAsync(country);
-        while (apiReposImp.getWeatherForecast() == null) {
+        apiHelper.authAsync(country);
+        while (apiHelper.getWeatherForecast() == null) {
             try {
                 Thread.sleep(TIMEOUT);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        List<DayWeather> weatherForecastBig = apiReposImp.getWeatherForecast().getWeekForecast().getWeatherList();
+        List<DayWeather> weatherForecastBig = apiHelper.getWeatherForecast().getWeekForecast().getWeatherList();
         List<DayWeather> weatherForecast = weatherForecastBig.subList(0,weatherForecastBig.size() - 1);
         Calendar calendar = Calendar.getInstance();
         Integer day = calendar.get(Calendar.DAY_OF_WEEK) - 1;

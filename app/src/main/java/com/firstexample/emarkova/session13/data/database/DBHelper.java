@@ -5,7 +5,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.firstexample.emarkova.session13.MyApplication;
+
 import java.util.ArrayList;
+
+import javax.inject.Inject;
+
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final String TABNAME = "DAYS";
@@ -16,9 +21,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
-    public DBHelper(Context context) {
-
-        this(context, DB_NAME, null, VERSION_DB);
+    @Inject
+    public DBHelper() {
+        this(MyApplication.getContext(),DB_NAME, null, VERSION_DB);
+        //DaggerApplicationComponent.builder().contextModule(new ContextModule()).build().inject(this)
     }
 
     @Override
